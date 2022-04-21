@@ -2,7 +2,7 @@ const WXAPI = require('apifm-wxapi')
 const CONFIG = require('config.js')
 const AUTH = require('utils/auth')
 App({
-  onLaunch: function() {    
+  onLaunch: function () {
     WXAPI.init(CONFIG.subDomain)
     const that = this;
     // 检测新版本
@@ -40,7 +40,7 @@ App({
      * 监听网络状态变化
      * 可根据业务需求进行调整
      */
-    wx.onNetworkStatusChange(function(res) {
+    wx.onNetworkStatusChange(function (res) {
       if (!res.isConnected) {
         that.globalData.isConnected = false
         wx.showToast({
@@ -64,7 +64,8 @@ App({
       }
     })
   },
-  onShow (e) {
+  onShow(e) {
+
     // 保存邀请人
     if (e && e.query && e.query.inviter_id) {
       wx.setStorageSync('referrer', e.query.inviter_id)

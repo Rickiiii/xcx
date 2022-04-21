@@ -1,7 +1,7 @@
 const WXAPI = require('apifm-wxapi')
 import Dialog from '@vant/weapp/dialog/dialog'
 
-async function checkSession(){
+async function checkSession() {
   return new Promise((resolve, reject) => {
     wx.checkSession({
       success() {
@@ -48,7 +48,7 @@ async function checkHasLogined() {
   return true
 }
 
-async function wxaCode(){
+async function wxaCode() {
   return new Promise((resolve, reject) => {
     wx.login({
       success(res) {
@@ -65,7 +65,7 @@ async function wxaCode(){
   })
 }
 
-async function login(page){
+async function login(page) {
   const _this = this
   wx.login({
     success: function (res) {
@@ -75,7 +75,7 @@ async function login(page){
           componentAppid,
           appid: wx.getStorageSync('appid'),
           code: res.code
-        }).then(function (res) {        
+        }).then(function (res) {
           if (res.code == 10000) {
             // 去注册
             return;
@@ -92,12 +92,12 @@ async function login(page){
           wx.setStorageSync('token', res.data.token)
           wx.setStorageSync('uid', res.data.uid)
           _this.bindSeller()
-          if ( page ) {
+          if (page) {
             page.onShow()
           }
         })
       } else {
-        WXAPI.login_wx(res.code).then(function (res) {        
+        WXAPI.login_wx(res.code).then(function (res) {
           if (res.code == 10000) {
             // 去注册
             return;
@@ -114,7 +114,7 @@ async function login(page){
           wx.setStorageSync('token', res.data.token)
           wx.setStorageSync('uid', res.data.uid)
           _this.bindSeller()
-          if ( page ) {
+          if (page) {
             page.onShow()
           }
         })
@@ -178,12 +178,12 @@ async function authorize() {
   })
 }
 
-function loginOut(){
+function loginOut() {
   wx.removeStorageSync('token')
   wx.removeStorageSync('uid')
 }
 
-async function checkAndAuthorize (scope) {
+async function checkAndAuthorize(scope) {
   return new Promise((resolve, reject) => {
     wx.getSetting({
       success(res) {
@@ -193,7 +193,7 @@ async function checkAndAuthorize (scope) {
             success() {
               resolve() // 无返回参数
             },
-            fail(e){
+            fail(e) {
               console.error(e)
               // if (e.errMsg.indexof('auth deny') != -1) {
               //   wx.showToast({
@@ -201,32 +201,32 @@ async function checkAndAuthorize (scope) {
               //     icon: 'none'
               //   })
               // }
-              wx.showModal({
-                title: '无权操作',
-                content: '需要获得您的授权',
-                showCancel: false,
-                confirmText: '立即授权',
-                confirmColor: '#e64340',
-                success(res) {
-                  wx.openSetting();
-                },
-                fail(e){
-                  console.error(e)
-                  reject(e)
-                },
-              })
+              // wx.showModal({
+              //   title: '无权操作',
+              //   content: '需要获得您的授权',
+              //   showCancel: false,
+              //   confirmText: '立即授权',
+              //   confirmColor: '#e64340',
+              //   success(res) {
+              //     wx.openSetting();
+              //   },
+              //   fail(e){
+              //     console.error(e)
+              //     reject(e)
+              //   },
+              // })
             }
           })
         } else {
           resolve() // 无返回参数
         }
       },
-      fail(e){
+      fail(e) {
         console.error(e)
         reject(e)
       }
     })
-  })  
+  })
 }
 
 module.exports = {

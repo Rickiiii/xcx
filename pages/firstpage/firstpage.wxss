@@ -1,0 +1,108 @@
+/* pages/firstpage/firstpage.wxss */
+.slowgan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+image{
+  width: 750rpx;
+  height: 450rpx;
+}
+swiper{
+  height: 400rpx;
+}
+.btn1 {
+  width: 80%;
+  margin-top: 100rpx;
+  background-color:beige;
+  color: #999999;
+  border-radius: 98rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 50rpx;
+}
+.btn1::after {
+  border-radius: 98rpx;
+  border:0;
+}
+
+.btnImg {
+  margin-left: 120rpx;
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.btnImg1 {
+  margin-left: 78rpx;
+  margin-top: 60rpx;
+  width: 90rpx;
+  height: 90rpx;
+}
+.huiyuanBtn {
+  /* flex-direction: column; */
+  /* align-items: center;
+  justify-content: center; */
+  border-bottom: 10rpx;
+  width: 300rpx;
+  height: 300rpx;
+  /* float:center; */
+  font-weight: 100;
+  border-radius: 100%;
+}
+.huiyuanBtn::after
+{
+  border: none;
+}
+
+.ziquBtn {
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48%;
+  float:left;
+  font-weight: 100;
+  border-radius: 50rpx;
+  /* background-color: #999999; */
+}
+.ziquBtn::after
+{
+  border: none;
+}
+.waisongBtn {
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48% !important;
+  float:right;
+  border-radius: 50rpx;
+  font-weight: 100;
+  /* background-color: #999999; */
+}
+
+.waisongBtn::after
+{
+  border:none;
+}
+.s_view {
+  bottom: 400rpx;
+  position: fixed;
+  width: 100%; 
+  /* display: flex; */
+  /* flex-direction: flax; */
+  align-items: center;
+  justify-content: center;
+  /* width: 100%;
+  height: 100%; */
+  /* position: absolute;  */
+}
+
+.s_view1 {
+  bottom: 50rpx;
+  position: fixed;
+  width: 100%;
+}
+

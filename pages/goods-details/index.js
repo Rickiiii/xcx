@@ -19,39 +19,39 @@ Page({
     propertyChildNames: "",
     canSubmit: false, //  选中规格尺寸时候是否允许加入购物车
   },
-  onLoad(e) {
-    // e.id = 122843
-    // 读取分享链接中的邀请人编号
-    if (e && e.inviter_id) {
-      wx.setStorageSync('referrer', e.inviter_id)
-    }
-    // 读取小程序码中的邀请人编号
-    if (e && e.scene) {
-      const scene = decodeURIComponent(e.scene) // 处理扫码进商品详情页面的逻辑
-      if (scene && scene.split(',').length >= 2) {
-        e.id = scene.split(',')[0]
-        wx.setStorageSync('referrer', scene.split(',')[1])
-      }
-    }
-    this.data.goodsId = e.id
-    this.data.kjJoinUid = e.kjJoinUid
-    let goodsDetailSkuShowType = wx.getStorageSync('goodsDetailSkuShowType')
-    if (!goodsDetailSkuShowType) {
-      goodsDetailSkuShowType = 0
-    }
-    // 补偿写法
-    getApp().configLoadOK = () => {
-      this.readConfigVal()
-    }
-    this.setData({
-      goodsDetailSkuShowType,
-      curuid: wx.getStorageSync('uid')
-    })
-    this.readConfigVal()
-    this.getGoodsDetailAndKanjieInfo(this.data.goodsId)
-    this.shippingCartInfo()
-    this.goodsAddition()
-  },
+  // onLoad(e) {
+  //   // e.id = 122843
+  //   // 读取分享链接中的邀请人编号
+  //   if (e && e.inviter_id) {
+  //     wx.setStorageSync('referrer', e.inviter_id)
+  //   }
+  //   // 读取小程序码中的邀请人编号
+  //   if (e && e.scene) {
+  //     const scene = decodeURIComponent(e.scene) // 处理扫码进商品详情页面的逻辑
+  //     if (scene && scene.split(',').length >= 2) {
+  //       e.id = scene.split(',')[0]
+  //       wx.setStorageSync('referrer', scene.split(',')[1])
+  //     }
+  //   }
+  //   this.data.goodsId = e.id
+  //   this.data.kjJoinUid = e.kjJoinUid
+  //   let goodsDetailSkuShowType = wx.getStorageSync('goodsDetailSkuShowType')
+  //   if (!goodsDetailSkuShowType) {
+  //     goodsDetailSkuShowType = 0
+  //   }
+  //   // 补偿写法
+  //   getApp().configLoadOK = () => {
+  //     this.readConfigVal()
+  //   }
+  //   this.setData({
+  //     goodsDetailSkuShowType,
+  //     curuid: wx.getStorageSync('uid')
+  //   })
+  //   this.readConfigVal()
+  //   this.getGoodsDetailAndKanjieInfo(this.data.goodsId)
+  //   this.shippingCartInfo()
+  //   this.goodsAddition()
+  // },
   readConfigVal() {
 
   },

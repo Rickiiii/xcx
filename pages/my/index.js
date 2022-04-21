@@ -67,7 +67,7 @@ Page({
       })
     }
   },
-  scanOrderCode(){
+  scanOrderCode() {
     wx.scanCode({
       onlyFromCamera: true,
       success(res) {
@@ -130,6 +130,7 @@ Page({
       province: userInfo.province,
       gender: userInfo.gender,
     }
+    console.log(postData, 'postData')
     const res = await WXAPI.modifyUserInfo(postData)
     if (res.code != 0) {
       wx.showToast({

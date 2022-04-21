@@ -2,7 +2,7 @@ const WXAPI = require('apifm-wxapi')
 const AUTH = require('../../utils/auth')
 const APP = getApp()
 APP.configLoadOK = () => {
-  
+
 }
 
 Page({
@@ -12,13 +12,13 @@ Page({
     cancelBtn: false,
 
     pickerRegionRange: [],
-    pickerSelect:[0, 0, 0],
+    pickerSelect: [0, 0, 0],
     showRegionStr: '选择行政地址（省、市、区县）',
 
     addressData: {}
   },
   // 添加地址
-  addAddress: function() {
+  addAddress: function () {
     this.setData({
       addressEdit: true,
       cancelBtn: true,
@@ -27,9 +27,9 @@ Page({
     })
   },
   // 取消编辑
-  editCancel: function(){
+  editCancel: function () {
     this.setData({
-      addressEdit: false,         
+      addressEdit: false,
     })
   },
   // 编辑地址
@@ -37,18 +37,18 @@ Page({
     // wx.navigateTo({
     //   url: "/pages/address-add/index?id=" + e.currentTarget.dataset.id
     // })
-    var id = e.currentTarget.dataset.id    
-    this.setData({ 
+    var id = e.currentTarget.dataset.id
+    this.setData({
       addressEdit: true,
       cancelBtn: false,
-      id:id,
+      id: id,
     })
     if (id) { // 修改初始化数据库数据
       const res = await WXAPI.addressDetail(wx.getStorageSync('token'), id)
       if (res.code == 0) {
         var addressData = res.data.info
         console.log(addressData)
-        var address = addressData.address        
+        var address = addressData.address
         var pname = addressData.provinceStr
         var cname = addressData.cityStr
         var dname = addressData.areaStr
@@ -59,8 +59,8 @@ Page({
 
         this.setData({
           id: id,
-          addressData: res.data.info,  
-          address: res.data.info.address,        
+          addressData: res.data.info,
+          address: res.data.info.address,
           pname: pname,
           cname: cname,
           dname: dname,
@@ -69,9 +69,9 @@ Page({
           districtId: districtId,
         })
         // console.log(addressData)        
-        this.initRegionDB(pname,cname,dname)
-        this.provinces(provinceId,cityId,districtId) 
-               
+        this.initRegionDB(pname, cname, dname)
+        this.provinces(provinceId, cityId, districtId)
+
       } else {
         wx.showModal({
           title: '错误',
@@ -81,17 +81,17 @@ Page({
       }
     } else {
       this.initRegionPicker()
-    }  
-    
-  }, 
+    }
+
+  },
   // 选中地址
-  selectTap: function(e) {
+  selectTap: function (e) {
     var id = e.currentTarget.dataset.id;
     WXAPI.updateAddress({
       token: wx.getStorageSync('token'),
       id: id,
       isDefault: 'true'
-    }).then(function(res) {
+    }).then(function (res) {
       wx.navigateBack({})
     })
   },
@@ -119,7 +119,7 @@ Page({
     })
   },
   // 微信读取
-  readFromWx : function () {
+  readFromWx: function () {
     const _this = this
     wx.chooseAddress({
       success: function (res) {
@@ -130,7 +130,7 @@ Page({
         });
       }
     })
-  },  
+  },
   // 获取地址列表
   async initShippingAddress() {
     wx.showLoading({
@@ -138,7 +138,7 @@ Page({
     })
     const res = await WXAPI.queryAddress(wx.getStorageSync('token'))
     wx.hideLoading({
-      success: (res) => {},
+      success: (res) => { },
     })
     if (res.code == 0) {
       this.setData({
@@ -149,9 +149,9 @@ Page({
         addressList: null
       });
     }
-  },   
+  },
   // 省市选择器 三栏
-  initRegionPicker () {
+  initRegionPicker() {
     WXAPI.province().then(res => {
       if (res.code === 0) {
         let _pickerRegionRange = []
@@ -163,20 +163,20 @@ Page({
       }
     })
   },
-  async initRegionDB (pname, cname, dname) {
+  async initRegionDB(pname, cname, dname) {
     this.data.showRegionStr = pname + cname + dname
     let pObject = undefined
     let cObject = undefined
     let dObject = undefined
     if (pname) {
-      const index = this.data.pickerRegionRange[0].findIndex(ele=>{
+      const index = this.data.pickerRegionRange[0].findIndex(ele => {
         return ele.name == pname
-      })      
+      })
       if (index >= 0) {
         this.data.pickerSelect[0] = index
         pObject = this.data.pickerRegionRange[0][index]
       }
-    }    
+    }
     if (!pObject) {
       return
     }
@@ -186,13 +186,13 @@ Page({
       if (cname) {
         const index = this.data.pickerRegionRange[1].findIndex(ele => {
           return ele.name == cname
-        })        
+        })
         if (index >= 0) {
           this.data.pickerSelect[1] = index
           cObject = this.data.pickerRegionRange[1][index]
         }
       }
-    }    
+    }
     if (!cObject) {
       return
     }
@@ -202,7 +202,7 @@ Page({
       if (dname) {
         const index = this.data.pickerRegionRange[2].findIndex(ele => {
           return ele.name == dname
-        })        
+        })
         if (index >= 0) {
           this.data.pickerSelect[2] = index
           dObject = this.data.pickerRegionRange[2][index]
@@ -217,9 +217,9 @@ Page({
       cObject: cObject,
       dObject: dObject
     })
-    
-  },  
-  bindchange: function(e) {    
+
+  },
+  bindchange: function (e) {
     const pObject = this.data.pickerRegionRange[0][e.detail.value[0]]
     const cObject = this.data.pickerRegionRange[1][e.detail.value[1]]
     const dObject = this.data.pickerRegionRange[2][e.detail.value[2]]
@@ -231,10 +231,10 @@ Page({
       showRegionStr: showRegionStr
     })
   },
-  bindcolumnchange: function(e) {
+  bindcolumnchange: function (e) {
     const column = e.detail.column
-    const index = e.detail.value    
-    const regionObject = this.data.pickerRegionRange[column][index]    
+    const index = e.detail.value
+    const regionObject = this.data.pickerRegionRange[column][index]
     if (column === 2) {
       this.setData({
         pickerRegionRange: this.data.pickerRegionRange
@@ -253,32 +253,32 @@ Page({
     // 追加后面的一级数组
     WXAPI.nextRegion(regionObject.id).then(res => {
       if (res.code === 0) {
-        this.data.pickerRegionRange[column + 1] = res.data     
+        this.data.pickerRegionRange[column + 1] = res.data
       }
       this.bindcolumnchange({ detail: { column: column + 1, value: 0 } })
     })
-  },  
+  },
   // 
   async provinces(provinceId, cityId, districtId) {
-    const res1 = await WXAPI.province()    
-    const provinces = res1.data  
+    const res1 = await WXAPI.province()
+    const provinces = res1.data
     this.setData({
       provinces,
-    })     
+    })
     var pIndex = provinces.findIndex(ele => {
       return ele.id == provinceId
-    })  
-     
-    const pid = this.data.provinces[pIndex].id    
+    })
+
+    const pid = this.data.provinces[pIndex].id
     const res2 = await WXAPI.nextRegion(pid)
-    const cities = res2.data  
+    const cities = res2.data
     this.setData({
       cities,
-    })  
-    var  cIndex = cities.findIndex(ele => {
+    })
+    var cIndex = cities.findIndex(ele => {
       return ele.id == cityId
     })
-    
+
     const cid = this.data.cities[cIndex].id
     const res3 = await WXAPI.nextRegion(cid);
     const areas = res3.data
@@ -295,8 +295,8 @@ Page({
       pIndex: pIndex,
       cIndex: cIndex,
       aIndex: aIndex,
-    })  
-    
+    })
+
   },
   linkManChange(e) {
     const addressData = this.data.addressData
@@ -320,68 +320,68 @@ Page({
     })
   },
   // 保存按钮
-  async bindSave() {    
+  async bindSave() {
     const pObject = this.data.pObject
     const cObject = this.data.cObject
     const dObject = this.data.dObject
     const linkMan = this.data.addressData.linkMan
     const address = this.data.addressData.address
     const mobile = this.data.addressData.mobile
-    const latitude = this.data.addressData.latitude
-    const longitude = this.data.addressData.longitude
+    // const latitude = this.data.addressData.latitude
+    // const longitude = this.data.addressData.longitude
 
-    if (!linkMan){
+    if (!linkMan) {
       wx.showToast({
         title: '请填写用户姓名',
-        icon: 'none',        
+        icon: 'none',
       })
       return
     }
-    if (!mobile){
+    if (!mobile) {
       wx.showToast({
         title: '请填写手机号码',
-        icon: 'none',        
+        icon: 'none',
       })
       return
     }
-    if (!this.data.pObject || !this.data.cObject || !this.data.dObject){
+    if (!this.data.pObject || !this.data.cObject || !this.data.dObject) {
       wx.showToast({
         title: '请选择行政区划',
-        icon: 'none',        
+        icon: 'none',
       })
       return
     }
-    if (!latitude){
-      wx.showToast({
-        title: '请选择定位',
-        icon: 'none',       
-      })
-      return
-    }
-    if (!address){
+    // if (!latitude){
+    //   wx.showToast({
+    //     title: '请选择定位',
+    //     icon: 'none',       
+    //   })
+    //   return
+    // }
+    if (!address) {
       wx.showToast({
         title: '请填写详细地址',
-        icon: 'none',       
+        icon: 'none',
       })
       return
     }
-    
+
     const postData = {
       token: wx.getStorageSync('token'),
       linkMan: linkMan,
       address: address,
       mobile: mobile,
       isDefault: 'true',
-      latitude,
-      longitude
-    }     
+      // latitude,
+      // longitude
+    }
 
     // console.log(this.data.pIndex)
     // console.log(this.data.cIndex)
     // console.log(this.data.aIndex)
 
     postData.provinceId = pObject.id
-    postData.cityId = cObject.id  
+    postData.cityId = cObject.id
     postData.districtId = dObject.id
 
     // if (this.data.pIndex >= 0) {
@@ -415,10 +415,10 @@ Page({
         cancelBtn: false,
       })
       this.initShippingAddress()
-    }    
-    
+    }
+
   },
-  onLoad: function (e) {    
+  onLoad: function (e) {
     const _this = this
     _this.initRegionPicker() // 初始化省市区选择器
     if (e.id) { // 修改初始化数据库数据
@@ -441,7 +441,7 @@ Page({
       })
     }
   },
-  onShow: function() {
+  onShow: function () {
     AUTH.checkHasLogined().then(isLogined => {
       if (isLogined) {
         this.initShippingAddress();
@@ -455,21 +455,21 @@ Page({
         })
       }
     })
-  },  
-  
+  },
+
   // 判断电话号码格式
-  setTelModal:function(e) {
+  setTelModal: function (e) {
     // console.log(e)    
     var mobile = /^[1][3,4,5,7,8][0-9]{9}$/;
     // var myreg = /^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;  //判断是否是座机电话
-    
+
     var isMobile = mobile.exec(e.detail.value)
     //输入有误的话，弹出模态框提示
-    if(!isMobile){
+    if (!isMobile) {
       wx.showModal({
         title: '错误',
         content: '手机号码格式不正确',
-        showCancel:false
+        showCancel: false
       })
     }
   },
@@ -478,8 +478,8 @@ Page({
       success: (res) => {
         const addressData = this.data.addressData
         addressData.address = res.address + res.name
-        addressData.latitude = res.latitude
-        addressData.longitude = res.longitude
+        // addressData.latitude = res.latitude
+        // addressData.longitude = res.longitude
         this.setData({
           addressData
         })

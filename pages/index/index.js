@@ -135,18 +135,18 @@ Page({
       }
       return
     }
-    wx.getLocation({
-      type: 'wgs84', //wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
-      success: (res) => {
-        // console.log(res)
-        this.data.latitude = res.latitude
-        this.data.longitude = res.longitude
-        this.fetchShops(res.latitude, res.longitude, '')
-      },      
-      fail(e){
-        AUTH.checkAndAuthorize('scope.userLocation')
-      }
-    })
+    // wx.getLocation({
+    //   type: 'wgs84', //wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
+    //   success: (res) => {
+    //     // console.log(res)
+    //     this.data.latitude = res.latitude
+    //     this.data.longitude = res.longitude
+    //     this.fetchShops(res.latitude, res.longitude, '')
+    //   },      
+    //   fail(e){
+    //     AUTH.checkAndAuthorize('scope.userLocation')
+    //   }
+    // })
   },
   async fetchShops(latitude, longitude, kw){
     const res = await WXAPI.fetchShops({
@@ -201,7 +201,7 @@ Page({
       key: 'peisongType',
     })
   },
-  // 获取分类
+  //获取分类
   async categories() {
     const res = await WXAPI.goodsCategory()
     if (res.code != 0) {

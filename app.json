@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/firstpage/firstpage",
     "pages/index/index",
     "pages/all-orders/index",
     "pages/my/index",
@@ -18,10 +19,8 @@
     "pages/asset/index",
     "pages/asset/recharge-log",
     "pages/asset/cash-log",
-    "pages/sign/index",
     "pages/score/logs",
     "pages/notice/detail",
-    "pages/queue/index",
     "pages/cart/index",
     "pages/cart/order",
     "pages/goods-details/index"
@@ -38,16 +37,16 @@
     "backgroundColor": "#fff",
     "list": [
       {
+        "pagePath": "pages/firstpage/firstpage",
+        "iconPath": "images/nav/index-off.png",
+        "selectedIconPath": "images/nav/index-on.png",
+        "text": "首页"
+      },
+      {
         "pagePath": "pages/index/index",
         "iconPath": "images/nav/index-off.png",
         "selectedIconPath": "images/nav/index-on.png",
-        "text": "点餐"
-      },
-      {
-        "pagePath": "pages/queue/index",
-        "iconPath": "images/nav/qh-off.png",
-        "selectedIconPath": "images/nav/qh-on.png",
-        "text": "取号"
+        "text": "点单"
       },
       {
         "pagePath": "pages/order-details/doing",
@@ -62,11 +61,6 @@
         "text": "我的"
       }
     ]
-  },
-  "permission": {
-    "scope.userLocation": {
-      "desc": "获取离你最近的门店"
-    }
   },
   "usingComponents": {
     "parser":"/components/parser.20200731.min/parser",
