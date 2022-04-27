@@ -9,15 +9,15 @@ Page({
   data: {
     apiOk: false
   },
-  cancelOrderTap: function(e) {
+  cancelOrderTap: function (e) {
     const that = this;
     const orderId = e.currentTarget.dataset.id;
     wx.showModal({
       title: '确定要取消该订单吗？',
       content: '',
-      success: function(res) {
+      success: function (res) {
         if (res.confirm) {
-          WXAPI.orderClose(wx.getStorageSync('token'), orderId).then(function(res) {
+          WXAPI.orderClose(wx.getStorageSync('token'), orderId).then(function (res) {
             if (res.code == 0) {
               that.onShow();
             }
@@ -26,7 +26,7 @@ Page({
       }
     })
   },
-  toPayTap: function(e) {
+  toPayTap: function (e) {
     // 防止连续点击--开始
     if (this.data.payButtonClicked) {
       wx.showToast({
@@ -44,7 +44,7 @@ Page({
     const orderId = e.currentTarget.dataset.id;
     let money = e.currentTarget.dataset.money;
     const needScore = e.currentTarget.dataset.score;
-    WXAPI.userAmount(wx.getStorageSync('token')).then(function(res) {
+    WXAPI.userAmount(wx.getStorageSync('token')).then(function (res) {
       if (res.code == 0) {
         // 增加提示框
         if (res.data.score < needScore) {
@@ -54,12 +54,12 @@ Page({
           })
           return;
         }
-        let _msg = '订单金额: ' + money +' 元'
+        let _msg = '订单金额: ' + money + ' 元'
         if (res.data.balance > 0) {
-          _msg += ',可用余额为 ' + res.data.balance +' 元'
+          _msg += ',可用余额为 ' + res.data.balance + ' 元'
           if (money - res.data.balance > 0) {
             _msg += ',仍需微信支付 ' + (money - res.data.balance) + ' 元'
-          }          
+          }
         }
         if (needScore > 0) {
           _msg += ',并扣除 ' + needScore + ' 积分'
@@ -88,7 +88,7 @@ Page({
       }
     })
   },
-  _toPayTap: function (orderId, money){
+  _toPayTap: function (orderId, money) {
     const _this = this
     if (money <= 0) {
       // 直接使用余额支付
@@ -99,10 +99,10 @@ Page({
       wxpay.wxpay('order', money, orderId, "/pages/all-orders/index");
     }
   },
-  onLoad: function(options) {
-    
+  onLoad: function (options) {
+
   },
-  onShow: function() {
+  onShow: function () {
     AUTH.checkHasLogined().then(isLogined => {
       if (isLogined) {
         this.doneShow();
@@ -132,7 +132,7 @@ Page({
           ele.statusStr = '配送中'
         }
         if (ele.status == 1 && !ele.isNeedLogistics) {
-          ele.statusStr = '待取餐'
+          ele.statusStr = '待取货'
         }
         if (ele.status == 3) {
           ele.statusStr = '已完成'
@@ -144,7 +144,7 @@ Page({
         goodsMap: res.data.goodsMap,
         apiOk: true
       });
-      
+
     } else {
       this.setData({
         orderList: null,
@@ -154,26 +154,26 @@ Page({
       });
     }
   },
-  toIndexPage: function() {
+  toIndexPage: function () {
     wx.switchTab({
       url: "/pages/index/index"
     });
   },
   // 删除订单
-  deleteOrder: function(e){
+  deleteOrder: function (e) {
     const that = this
     const id = e.currentTarget.dataset.id;
-    
+
     wx.showModal({
       title: '提示',
       content: '确定要删除该订单吗？',
       success: function (res) {
         if (res.confirm) {
-          WXAPI.orderDelete(wx.getStorageSync('token'), id).then(function (res) {  
+          WXAPI.orderDelete(wx.getStorageSync('token'), id).then(function (res) {
             if (res.code == 0) {
               that.onShow(); //重新获取订单列表
-            }              
-            
+            }
+
           })
         } else {
           console.log('用户点击取消')
@@ -182,17 +182,17 @@ Page({
     })
   },
   async callShop(e) {
-    const shopId = e.currentTarget.dataset.shopid
-    const res = await WXAPI.shopSubdetail(shopId)
-    if (res.code != 0) {
-      wx.showToast({
-        title: res.msg,
-        icon: 'none'
-      })
-      return
-    }
+    // const shopId = e.currentTarget.dataset.shopid
+    // const res = await WXAPI.shopSubdetail(shopId)
+    // if (res.code != 0) {
+    //   wx.showToast({
+    //     title: res.msg,
+    //     icon: 'none'
+    //   })
+    //   return
+    // }
     wx.makePhoneCall({
-      phoneNumber: res.data.info.linkPhone,
+      phoneNumber: '15968182556',
     })
   },
 })

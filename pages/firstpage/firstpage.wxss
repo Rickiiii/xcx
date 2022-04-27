@@ -12,7 +12,7 @@ swiper{
   height: 400rpx;
 }
 .btn1 {
-  width: 80%;
+  /* width: 80%;
   margin-top: 100rpx;
   background-color:beige;
   color: #999999;
@@ -21,25 +21,19 @@ swiper{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 50rpx;
+  font-size: 50rpx; */
 }
 .btn1::after {
-  border-radius: 98rpx;
-  border:0;
+  /* border-radius: 98rpx;
+  border:0; */
 }
 
 .btnImg {
-  margin-left: 120rpx;
   width: 90rpx;
   height: 90rpx;
+  margin-left: 96rpx;
 }
 
-.btnImg1 {
-  margin-left: 78rpx;
-  margin-top: 60rpx;
-  width: 90rpx;
-  height: 90rpx;
-}
 .huiyuanBtn {
   /* flex-direction: column; */
   /* align-items: center;
@@ -58,51 +52,77 @@ swiper{
 
 .ziquBtn {
   /* display: flex; */
-  flex-direction: column;
+  /* flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 48%;
   float:left;
   font-weight: 100;
-  border-radius: 50rpx;
+  border-radius: 50rpx; */
   /* background-color: #999999; */
 }
 .ziquBtn::after
 {
-  border: none;
+  /* border: none; */
 }
 .waisongBtn {
   /* display: flex; */
-  flex-direction: column;
+  /* flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 48% !important;
   float:right;
   border-radius: 50rpx;
-  font-weight: 100;
+  font-weight: 100; */
   /* background-color: #999999; */
 }
 
 .waisongBtn::after
 {
-  border:none;
-}
-.s_view {
-  bottom: 400rpx;
-  position: fixed;
-  width: 100%; 
-  /* display: flex; */
-  /* flex-direction: flax; */
-  align-items: center;
-  justify-content: center;
-  /* width: 100%;
-  height: 100%; */
-  /* position: absolute;  */
+  /* border:none; */
 }
 
-.s_view1 {
-  bottom: 50rpx;
-  position: fixed;
+.main-container {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 60rpx;
+}
+
+.s_view {
+  box-shadow: 3rpx 2rpx 7rpx 0 lightgray;
+  border-radius: 100rpx;
+}
+
+.s_view .box {
+  display: inline-flex;
+  justify-content: center;
   width: 100%;
 }
 
+.s_view .box .ziquBtn {
+  width: 50%;
+  text-align: center;
+  border-radius: 100rpx 0 0 100rpx;
+  background-color: white;
+  border-right: 1px solid lightgray;
+  margin: 25rpx;
+}
+
+.s_view .box .waisongBtn {
+  width: 50%;
+  text-align: center;
+  border-radius: 0 100rpx 100rpx 0;
+  background-color: white;
+  margin: 24rpx 0;
+}
+
+.s_view1 {
+  margin-top: 60rpx;
+  box-shadow: 3rpx 2rpx 7rpx 0 lightgray;
+  border-radius: 155rpx;
+}
+
+.s_view1 .btnImg1 {
+  width: 90rpx;
+  height: 90rpx;
+}

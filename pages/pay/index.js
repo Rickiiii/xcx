@@ -145,13 +145,13 @@ Page({
       })
       return
     }
-    if (!this.data.diningTime) {
-      wx.showToast({
-        title: '请选择自取/配送时间',
-        icon: 'none'
-      })
-      return
-    }
+    // if (!this.data.diningTime) {
+    //   wx.showToast({
+    //     title: '请选择自取/配送时间',
+    //     icon: 'none'
+    //   })
+    //   return
+    // }
     this.setData({
       submitLoding: true
     })
@@ -433,6 +433,7 @@ Page({
     wx.navigateBack()
   },
   async getPhoneNumber(e) {
+    console.log(e, 'e')
     if (!e.detail.errMsg || e.detail.errMsg != "getPhoneNumber:ok") {
       wx.showToast({
         title: e.detail.errMsg,

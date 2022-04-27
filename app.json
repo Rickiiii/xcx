@@ -44,15 +44,15 @@
       },
       {
         "pagePath": "pages/index/index",
-        "iconPath": "images/nav/index-off.png",
-        "selectedIconPath": "images/nav/index-on.png",
+        "iconPath": "images/nav/qc-off.png",
+        "selectedIconPath": "images/nav/qc-on.png",
         "text": "点单"
       },
       {
-        "pagePath": "pages/order-details/doing",
-        "iconPath": "images/nav/qc-off.png",
-        "selectedIconPath": "images/nav/qc-on.png",
-        "text": "取餐"
+        "pagePath": "pages/all-orders/index",
+        "iconPath": "images/nav/order-off.png",
+        "selectedIconPath": "images/nav/order-on.png",
+        "text": "订单"
       },
       {
         "pagePath": "pages/my/index",
@@ -63,7 +63,7 @@
     ]
   },
   "usingComponents": {
-    "parser":"/components/parser.20200731.min/parser",
+    "parser": "/components/parser.20200731.min/parser",
     "van-button": "@vant/weapp/button/index",
     "van-sidebar": "@vant/weapp/sidebar/index",
     "van-sidebar-item": "@vant/weapp/sidebar-item/index",

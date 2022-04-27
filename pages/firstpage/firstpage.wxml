@@ -1,46 +1,41 @@
-<!--pages/firstpage/firstpage.wxml-->
+<!-- pages/firstpage/firstpage.wxml -->
 <!-- <view class="slowgan">您好,欢迎光临庆和堂</view> -->
 <!-- 轮播图 -->
-<swiper indicator-dots circular autoplay >
-<swiper-item>
-<image src="https://z2864610310.github.io/xiaocx/static/uploads/slide_1.jpg"></image>
-</swiper-item>
-<swiper-item>
-<image src="https://z2864610310.github.io/xiaocx/static/uploads/slide_2.jpg"></image>
-</swiper-item>
-<swiper-item>
-<image src="https://z2864610310.github.io/xiaocx/static/uploads/slide_3.jpg"></image>
-</swiper-item>
+<swiper indicator-dots circular autoplay>
+  <swiper-item>
+    <image src="https://z2864610310.github.io/xiaocx/static/uploads/slide_1.jpg"></image>
+  </swiper-item>
+  <swiper-item>
+    <image src="https://z2864610310.github.io/xiaocx/static/uploads/slide_2.jpg"></image>
+  </swiper-item>
+  <swiper-item>
+    <image src="https://z2864610310.github.io/xiaocx/static/uploads/slide_3.jpg"></image>
+  </swiper-item>
 </swiper>
-
 <!-- <van-button size="small" color="#e64340" bind:click="showGoodsDetailPOP">自取</van-button>
 
 <van-button size="small" color="#e64340" bind:click="showGoodsDetailPOP">外送</van-button> -->
-
-<text>\n</text>
-<text>\n</text>
-<text>\n</text>
-
 <!-- <button class='btn1' open-type='openSetting'>
     <image class='btnImg' src="/images/ziqu.png"></image>
     <view>确定</view>
- </button>  -->
-<view class = 's_view'>
-    <button class = "ziquBtn"  bindtap="ziqu">
-      <image class='btnImg' src="/images/ziqu.png"></image>
-      <view>自取</view>
-    </button>
-    <button class = "waisongBtn" bindtap="waisong">
-      <image class='btnImg' src="/images/peisong.png"></image>
-      <view>外送</view>
-    </button>
-</view>
-
-<view class = "s_view1">
-  <button class = "huiyuanBtn" bindtap="shangcheng">
+ </button> -->
+<view class="main-container">
+  <view class='s_view'>
+    <view class="box">
+      <view class="ziquBtn" bindtap="ziqu">
+        <image class='btnImg' src="/images/ziqu.png"></image>
+        <view>自取</view>
+      </view>
+      <view class="waisongBtn" bindtap="waisong">
+        <image class='btnImg' src="/images/peisong.png"></image>
+        <view>外送</view>
+      </view>
+    </view>
+  </view>
+  <view class="s_view1">
+    <view class="huiyuanBtn" bindtap="shangcheng">
       <image class='btnImg1' src="/images/shangcheng.png"></image>
       <view>积分商城</view>
-  </button>
+    </view>
+  </view>
 </view>
-
-
