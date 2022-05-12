@@ -3,13 +3,13 @@
 <!-- 轮播图 -->
 <swiper indicator-dots circular autoplay>
   <swiper-item>
-    <image src="https://z2864610310.github.io/xiaocx/static/uploads/slide_1.jpg"></image>
+    <image src="/images/banner/banner1.jpg"></image>
   </swiper-item>
   <swiper-item>
-    <image src="https://z2864610310.github.io/xiaocx/static/uploads/slide_2.jpg"></image>
+    <image src="/images/banner/banner2.jpg"></image>
   </swiper-item>
   <swiper-item>
-    <image src="https://z2864610310.github.io/xiaocx/static/uploads/slide_3.jpg"></image>
+    <image src="/images/banner/banner3.jpg"></image>
   </swiper-item>
 </swiper>
 <!-- <van-button size="small" color="#e64340" bind:click="showGoodsDetailPOP">自取</van-button>
@@ -32,10 +32,12 @@
       </view>
     </view>
   </view>
-  <view class="s_view1">
-    <view class="huiyuanBtn" bindtap="shangcheng">
+  <view class="s_view1" bindtap="shangcheng">
+    <view class="huiyuanBtn">
       <image class='btnImg1' src="/images/shangcheng.png"></image>
       <view>积分商城</view>
     </view>
+    <view class="moreCredits">更多积分</view>
+    <view class="vipPakcage">会员券包</view>
   </view>
 </view>
